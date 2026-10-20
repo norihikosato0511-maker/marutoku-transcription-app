@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Ⓓ 丸徳印 文字起こし Pro</title>
+
+    <meta name="theme-color"
+          content="#121212">
+
+    <link rel="manifest"
+          href="manifest.json">
+
+    <link rel="stylesheet"
+          href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>
+        <span class="marutoku">徳</span>
+        丸徳印 文字起こし Pro
+    </h1>
+</header>
+
+<main class="container">
+
+    <!-- 状態表示 -->
+
+    <div class="status-area">
+
+        <div class="timer-box">
+            ⏱ 録音時間：
+            <span id="timer">
+                00:00:00
+            </span>
+        </div>
+
+        <div class="status-box">
+            状態：
+            <span id="status">
+                待機中
+            </span>
+        </div>
+
+    </div>
+
+    <!-- 開始停止 -->
+
+    <div class="button-group">
+
+        <button
+            id="startBtn"
+            class="start-btn">
+
+            🎤 録音開始
+
+        </button>
+
+        <button
+            id="stopBtn"
+            class="stop-btn">
+
+            ⏹ 録音停止
+
+        </button>
+
+    </div>
+
+    <!-- 文字起こし結果 -->
+
+    <textarea
+        id="result"
+        placeholder="ここに文字起こし結果が表示されます..."
+    ></textarea>
+
+    <!-- 統計 -->
+
+    <div class="stats">
+
+        <div>
+            文字数：
+            <span id="count">0</span>
+        </div>
+
+        <div>
+            行数：
+            <span id="lineCount">0</span>
+        </div>
+
+    </div>
+
+    <!-- 機能ボタン -->
+
+    <div class="action-buttons">
+
+        <button onclick="copyText()">
+            📋 コピー
+        </button>
+
+        <button onclick="saveTxt()">
+            💾 TXT保存
+        </button>
+
+        <button onclick="saveDoc()">
+            📄 Word保存
+        </button>
+
+        <button onclick="saveCsv()">
+            📊 Excel(CSV)
+        </button>
+
+        <button onclick="createSummary()">
+            📝 要約
+        </button>
+
+        <button onclick="clearText()">
+            🗑 全消去
+        </button>
+
+        <button onclick="toggleDarkMode()">
+            🌙 ダークモード
+        </button>
+
+    </div>
+
+    <hr>
+
+    <!-- 検索 -->
+
+    <section class="search-section">
+
+        <h2>履歴検索</h2>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="キーワードを入力">
+
+        <button onclick="searchHistory()">
+            🔍 検索
+        </button>
+
+        <button onclick="showHistory()">
+            📂 履歴一覧
+        </button>
+
+    </section>
+
+    <!-- 履歴 -->
+
+    <section>
+
+        <h2>履歴</h2>
+
+        <div id="historyArea">
+
+        </div>
+
+    </section>
+
+    <!-- 要約 -->
+
+    <section>
+
+        <h2>要約結果</h2>
+
+        <div id="summaryArea">
+
+            要約結果はここに表示されます。
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- script.js -->
+
+<script src="script.js"></script>
+
+<!-- Service Worker -->
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker
+        .register("service-worker.js")
+        .then(() => {
+
+            console.log(
+                "Service Worker登録成功"
+            );
+
+        })
+        .catch(error => {
+
+            console.error(
+                "登録失敗",
+                error
+            );
+
+        });
+
+}
+
+</script>
+
+</body>
+
+</html>
