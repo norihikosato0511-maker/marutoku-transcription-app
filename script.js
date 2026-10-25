@@ -125,8 +125,7 @@ startBtn.addEventListener("click", async () => {
 
         // 音声録音開始
         mediaStream =
-          await navigator.mediaDevices.getDisplayMedia({
-            video: true,
+          await navigator.mediaDevices.getUserMedia({
             audio: true
           });
 
